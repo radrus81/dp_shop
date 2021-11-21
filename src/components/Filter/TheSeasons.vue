@@ -3,13 +3,14 @@
     title="Коллекция"
     :isLoading="isLoading"
     :isLoadingError="isLoadingError"
-    :items="seasons.items"
+    :items="$store.getters.storeSeasons"
+    :selectedIds="$store.getters.storeSeasonIds"
     :onHandler="setSelectedSeasons"
   ></the-template>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, watch } from 'vue';
 import { useStore } from 'vuex';
 
 import TheTemplate from './TheTemplate.vue';
@@ -23,7 +24,6 @@ export default defineComponent({
 
     const {
       items: seasons,
-      selectedIds: selectedSeasonsIds,
       isLoading,
       isLoadingError,
       loadItems: loadSeasons,
@@ -34,11 +34,17 @@ export default defineComponent({
       $store.commit('setSeasonsId', selectSeasons(event, id));
     };
 
-    loadSeasons();
+    watch(seasons, (data) => {
+      $store.commit('setSeasons', data.items);
+    });
+
+    watch(() => $store.getters.storeSeasons, (data) => {
+      if (!data.length) {
+        loadSeasons();
+      }
+    }, { immediate: true });
 
     return {
-      seasons,
-      selectedSeasonsIds,
       isLoading,
       isLoadingError,
       setSelectedSeasons,

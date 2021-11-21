@@ -1,7 +1,9 @@
-import Spinner from './components/UI/TheLoader.vue';
+import AppSpinner from '@/components/UI/AppLoader.vue';
+import AppAlert from '@/components/UI/AppAlert.vue';
 
 const registerComponents = (app) => {
-  app.component('app-spinner', Spinner);
+  app.component('app-spinner', AppSpinner);
+  app.component('app-alert', AppAlert);
 };
 
 export default registerComponents;

@@ -1,6 +1,5 @@
 import { createStore } from 'vuex';
 import filters from './filters';
-import pagination from './pafination';
 
 export default createStore({
   state: {
@@ -11,6 +10,5 @@ export default createStore({
   },
   modules: {
     filters,
-    pagination,
   },
 });

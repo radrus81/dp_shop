@@ -9,7 +9,6 @@
             @focus="isMinFocus = true"
             @blur="isMinFocus = false"
             v-model.number="minPrice" />
-            {{minPrice2}}
           <span class="form__value">От</span>
         </label>
         <label class="form__label form__label--price">
@@ -46,6 +45,7 @@ export default {
       if (!isFocus) {
         if (!this.minPrice) {
           this.setMinPrice(0);
+          this.minPrice = 0;
         } else {
           this.setMinPrice(this.minPrice);
         }
@@ -55,6 +55,7 @@ export default {
       if (!isFocus) {
         if (!this.maxPrice) {
           this.setMaxPrice(0);
+          this.maxPrice = 0;
         } else {
           this.setMaxPrice(this.maxPrice);
         }

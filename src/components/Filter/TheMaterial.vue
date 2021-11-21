@@ -3,13 +3,14 @@
     title="Материал"
     :isLoading="isLoading"
     :isLoadingError="isLoadingError"
-    :items="materials.items"
+    :items="$store.getters.storeMaterials"
+    :selectedIds="$store.getters.storeMaterialIds"
     :onHandler="setSelectedMaterials"
   ></the-template>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, watch } from 'vue';
 import { useStore } from 'vuex';
 
 import TheTemplate from './TheTemplate.vue';
@@ -23,22 +24,27 @@ export default defineComponent({
 
     const {
       items: materials,
-      selectedIds: selectedMaterialsIds,
       isLoading,
       isLoadingError,
       loadItems: loadMaterials,
       selectItem: selectMaterials,
-    } = useFilter('/api/materials/');
+    } = useFilter('/api/materials');
 
     const setSelectedMaterials = (event, id) => {
       $store.commit('setMaterialId', selectMaterials(event, id));
     };
 
-    loadMaterials();
+    watch(materials, (data) => {
+      $store.commit('setMaterials', data.items);
+    });
+
+    watch(() => $store.getters.storeMaterials, (data) => {
+      if (!data.length) {
+        loadMaterials();
+      }
+    }, { immediate: true });
 
     return {
-      materials,
-      selectedMaterialsIds,
       isLoading,
       isLoadingError,
       setSelectedMaterials,

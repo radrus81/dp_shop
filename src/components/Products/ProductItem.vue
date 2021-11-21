@@ -26,7 +26,10 @@ export default {
   props: ['product'],
   components: { ColorList },
   setup(props) {
-    const image = ref(props.product.colors[0].gallery[0].file.url);
+    const imageUrl = props.product.colors[0].gallery
+      ? props.product.colors[0].gallery[0].file.url
+      : 'https://etk23.ru/image/cache/10836_1-800x800.jpeg';
+    const image = ref(imageUrl);
     return {
       image,
     };

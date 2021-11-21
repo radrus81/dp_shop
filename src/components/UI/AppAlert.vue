@@ -1,12 +1,15 @@
 <template>
   <div class="cart__error form__error-block">
-    <h4>Произошла ошибка!</h4>
-    <p>Попробуйте снова перезагрузить страницу.</p>
+    <slot>
+      <h4>Произошла ошибка!</h4>
+      <p>Попробуйте снова перезагрузить страницу.</p>
+    </slot>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
 <style lang="css" scoped>

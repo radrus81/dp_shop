@@ -2,22 +2,17 @@
   <fieldset class="form__block">
     <legend class="form__legend">Категория</legend>
     <app-spinner v-if="isLoading"></app-spinner>
-    <the-alert v-else-if="isLoadingError"></the-alert>
-    <label
-      v-else
-      class="form__label form__label--select"
-    >
-      <select
-        class="form__select"
-        type="text"
-        name="category"
-        v-model.number="currentCategoryId"
-      >
-        <option :value="0">Все категории</option>
+    <app-alert v-else-if="isLoadingError"></app-alert>
+    <label v-else class="form__label form__label--select">
+      <select class="form__select" name="category" v-model.number="currentCategoryId">
+        <option :selected="!currentCategoryId && true" :value="0">
+          Все категории
+        </option>
         <option
           :value="category.id"
-          v-for="category in categories.items"
+          v-for="category in $store.getters.storeCategories"
           :key="category.id"
+          :selected="currentCategoryId === category.id && true"
         >
           {{ category.title }}
         </option>
@@ -27,14 +22,11 @@
 </template>
 
 <script>
-
 import { defineComponent, ref, watch } from 'vue';
 import { useStore } from 'vuex';
-import TheAlert from '../UI/TheAlert.vue';
 import useFilter from '@/hooks/useFilter';
 
 export default defineComponent({
-  components: { TheAlert },
   setup() {
     const $store = useStore();
 
@@ -45,20 +37,28 @@ export default defineComponent({
       loadItems: loadCategories,
     } = useFilter('/api/productCategories');
 
-    const currentCategoryId = ref(0);
+    const currentCategoryId = ref($store.getters.storeCategoryId);
 
     watch(currentCategoryId, (categoryId) => {
       $store.commit('setCategoryId', categoryId);
     });
 
-    loadCategories();
+    watch(categories, (data) => {
+      $store.commit('setCategories', data.items);
+    });
+
+    watch(() => $store.getters.storeCategories, (data) => {
+      if (!data.length) {
+        loadCategories();
+      }
+    }, { immediate: true });
 
     return {
-      categories,
       currentCategoryId,
       isLoading,
       isLoadingError,
     };
   },
+
 });
 </script>

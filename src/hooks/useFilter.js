@@ -3,8 +3,8 @@ import { ref } from 'vue';
 import without from 'lodash/without';
 import { API_BASE_URL } from '@/config';
 
-export default function (api, params) {
-  const items = ref([]);
+export default function (api) {
+  const items = ref([1]);
   const selectedIds = ref([]);
   const isLoading = ref(false);
   const isLoadingError = ref(false);
@@ -19,7 +19,7 @@ export default function (api, params) {
     return selectedIds.value;
   };
 
-  const loadItems = () => {
+  const loadItems = (params) => {
     isLoading.value = true;
     isLoadingError.value = false;
 
@@ -39,7 +39,6 @@ export default function (api, params) {
 
   return {
     items,
-    selectedIds,
     isLoading,
     isLoadingError,
     loadItems,

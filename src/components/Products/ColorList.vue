@@ -29,7 +29,12 @@ export default defineComponent({
 
     watch(idSelectedColor, (newColorId) => {
       const newImage = props.colors.find((item) => (item.color.id === newColorId));
-      context.emit('newImage', newImage.gallery[0].file.url);
+      if (newImage.gallery) {
+        context.emit('newImage', newImage.gallery[0].file.url);
+      } else {
+        const urlNotFoto = 'https://etk23.ru/image/cache/10836_1-800x800.jpeg';
+        context.emit('newImage', urlNotFoto);
+      }
     });
 
     return {
