@@ -7564,6 +7564,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.npmmirror.com/signal-exit/download/signal-exit-3.0.5.tgz#9e3e8cc0c75a99472b44321033a7702e7738252f"
   integrity sha1-nj6MwMdamUcrRDIQM6dwLnc4JS8=
 
+simple-icons@^5.3.0:
+  version "5.24.0"
+  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-5.24.0.tgz#6485a5713c2e5758605b461b833396c4874e9e4d"
+  integrity sha512-wKHeqUBsHYB5KPqdc3e7BGQPQCx/NbHfJuukjo70ABGk6hegjTDSoJhsSEcVadknVG4W3+jcC3G3RbytJnapGQ==
+
 simple-swizzle@^0.2.2:
   version "0.2.2"
   resolved "https://registry.npmmirror.com/simple-swizzle/download/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
@@ -8117,6 +8122,11 @@ timsort@^0.3.0:
   resolved "https://registry.npm.taobao.org/timsort/download/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
+tiny-emitter@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
+  integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
+
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.npm.taobao.org/tmp/download/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
@@ -8557,6 +8567,22 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
+
+vue3-icon@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vue3-icon/-/vue3-icon-2.0.0.tgz#6a7b16db190da982d120307b36556ebbed7b2d4d"
+  integrity sha512-7uZLM/9ajMlN4Xlr5t7xVPg6leMg1xgOYw7PPxuGohIntlxfPWk27gs8wJ/p63tjIlPsk38HwODpTmEUPqDudw==
+  dependencies:
+    simple-icons "^5.3.0"
+
+vue3-snackbar@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue3-snackbar/-/vue3-snackbar-1.0.3.tgz#803c4cecf676b5a141763ee66387e7ee5441652d"
+  integrity sha512-D5f8LdKaFfYrVLP7x7CASsKyFlOdxZ5Fg8npOC7thYCuUnQsxIgPMBG1dnAlVa1Xpwnl8U9brVl9sctdWGJs1Q==
+  dependencies:
+    core-js "^3.6.5"
+    tiny-emitter "^2.1.0"
+    vue3-icon "^2.0.0"
 
 vue@^3.0.0:
   version "3.2.21"

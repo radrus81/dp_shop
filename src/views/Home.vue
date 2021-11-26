@@ -51,7 +51,7 @@ export default defineComponent({
 
     const uniqueIdPage = ref(uniqueId('page_'));
     const page = ref(1);
-    const limit = ref(9);
+    const limit = ref(6);
     const total = ref(0);
     const pages = ref(1);
 

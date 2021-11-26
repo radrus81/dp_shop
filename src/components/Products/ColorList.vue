@@ -45,6 +45,8 @@ export default defineComponent({
 });
 </script>
 
-<style>
-
+<style scoped>
+  .colors__value{
+    border: 1px solid #ccc;
+  }
 </style>

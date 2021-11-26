@@ -12,15 +12,17 @@
         @click.prevent="startFilters"
         >Применить</button>
       <button
-      class="filter__reset button button--second"
-      type="button"
-      @click.prevent="resetFilters"
+        v-if="isVisibleBtnReset"
+        class="filter__reset button button--second"
+        type="button"
+        @click.prevent="resetFilters"
       >Сбросить</button>
     </form>
   </aside>
 </template>
 
 <script>
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 import { uniqueId } from 'lodash';
 import ThePrice from './ThePrice.vue';
@@ -35,17 +37,21 @@ export default {
   },
 
   setup() {
+    const isVisibleBtnReset = ref(false);
     const $store = useStore();
 
     const startFilters = () => {
+      isVisibleBtnReset.value = true;
       $store.commit('setStartFilter', uniqueId());
     };
 
     const resetFilters = () => {
+      isVisibleBtnReset.value = false;
       $store.commit('resetFilters', uniqueId());
     };
 
     return {
+      isVisibleBtnReset,
       startFilters,
       resetFilters,
     };
