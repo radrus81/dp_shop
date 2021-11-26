@@ -1,9 +1,4 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
-  {{test}}
   <app-header></app-header>
   <router-view :key="$route.fullPath" />
   <app-footer></app-footer>
