@@ -63,6 +63,7 @@ export default defineComponent({
       {
         id: product.value.category.id,
         title: product.value.category.title,
+        url: 'home',
       },
       {
         id: product.value.id,

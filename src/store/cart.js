@@ -7,6 +7,8 @@ export default {
     userAccessKey: null,
     cartProducts: [],
     cartProductsData: [],
+    deliveryPrice: 0,
+    orderInfo: null,
   },
 
   mutations: {
@@ -27,6 +29,16 @@ export default {
         size: item.size.title,
         price: item.price * item.quantity,
       }));
+    },
+    updateDeliveryPrice(state, price) {
+      state.deliveryPrice = price;
+    },
+    updateOrderInfo(state, orderInfo) {
+      state.orderInfo = orderInfo;
+    },
+    resetCart(state) {
+      state.cartProducts = [];
+      state.cartProductsData = [];
     },
   },
 
@@ -132,6 +144,15 @@ export default {
     },
     countCartData(state) {
       return state.cartProducts.length;
+    },
+    deliveryPrice(state) {
+      return state.deliveryPrice;
+    },
+    userAccessKey(state) {
+      return state.userAccessKey;
+    },
+    orderInfo(state) {
+      return state.orderInfo;
     },
   },
 };

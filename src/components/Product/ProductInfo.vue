@@ -2,14 +2,30 @@
   <div class="item__desc">
     <ul class="tabs">
       <li class="tabs__item">
-        <a class="tabs__link" href="#"> Информация о товаре </a>
+        <a class="tabs__link"
+            :class="{'tabs__link--current': tab === 'info'}"
+           @click.prevent="() => showInfoProduct('info')">
+          Информация о товаре
+        </a>
       </li>
       <li class="tabs__item">
-        <a class="tabs__link tabs__link--current"> Доставка и возврат </a>
+        <a
+          class="tabs__link"
+          :class="{'tabs__link--current': tab === 'delivery'}"
+          @click.prevent="() => showInfoProduct('delivery')"
+        >
+          Доставка и возврат
+        </a>
       </li>
     </ul>
 
-    <div class="item__content">
+    <div class="item__content" v-if="tab === 'info'">
+      <app-alert>
+         <p class="message">Информация о товаре будет в ближайшее время.</p>
+      </app-alert>
+    </div>
+
+    <div class="item__content" v-if="tab === 'delivery'">
       <h3>Доставка:</h3>
 
       <p>
@@ -31,7 +47,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+
+  data() {
+    return {
+      tab: 'info',
+    };
+  },
+  methods: {
+    showInfoProduct(tab) {
+      this.tab = tab;
+    },
+  },
+};
 </script>
 
-<style></style>
+<style scoped>
+  .tabs__link{
+    cursor: pointer;
+  }
+</style>

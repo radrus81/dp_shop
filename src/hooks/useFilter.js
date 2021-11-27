@@ -33,7 +33,6 @@ export default function (api) {
       isLoadingError.value = true;
       isLoading.value = false;
       error.value = err.response.data;
-      console.log('error', err.response.data);
     }
   };
 

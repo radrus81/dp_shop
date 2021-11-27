@@ -1,12 +1,12 @@
 <template>
   <form class="form" @submit.prevent="addToCart">
     <div class="item__row item__row--center">
-      <app-btn-control
+      <amount-selection
         :quantity="amount"
         @decrementAmount="amount--"
         @incrementAmount="amount++"
         @update:modelValue="amount = $event"
-      ></app-btn-control>
+      ></amount-selection>
       <b class="item__price"> {{ prityPrice }} ₽ </b>
     </div>
 
@@ -54,10 +54,10 @@
 <script>
 import { mapActions, mapMutations } from 'vuex';
 import numberFormat from '@/helpers/numberFormat';
-import AppBtnControl from '../AppBtnControl.vue';
+import AmountSelection from '../AmountSelection.vue';
 
 export default {
-  components: { AppBtnControl },
+  components: { AmountSelection },
   props: ['product'],
   data() {
     return {

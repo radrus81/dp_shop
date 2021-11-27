@@ -13,7 +13,7 @@
     </div>
 
     <section class="cart" v-if="$store.getters.countCartData">
-      <form class="cart__form form" action="#" method="POST">
+      <form class="cart__form form" @submit.prevent="this.$router.push({ name: 'order' })">
         <div class="cart__field">
           <ul class="cart__list">
             <li class="cart__item product" v-for="product in products" :key="product.productId">
@@ -23,7 +23,7 @@
               <h3 class="product__title">{{ product.title }}</h3>
               <p class="product__info product__info--color">
                 Цвет:
-                <span>
+                <span class="colors__value">
                   <i :style="{ 'background-color': product.color }"></i>
                   {{ product.colorTitle }} </span
                 ><br /><br />
@@ -33,12 +33,12 @@
 
               <span class="product__code"> Артикул: {{ product.productId }} </span>
 
-              <app-btn-control
+              <amount-selection
                 :quantity="product.amount"
                 @decrementAmount="()=>updateAmount(product.productId, --product.amount)"
                 @incrementAmount="()=>updateAmount(product.productId, ++product.amount)"
                 @update:modelValue="($event)=>updateAmount(product.productId, $event)"
-              ></app-btn-control>
+              ></amount-selection>
 
               <b class="product__price"> {{ product.price }} ₽ </b>
 
@@ -63,7 +63,10 @@
             Итого: <span>{{ totalPrice }} ₽</span>
           </p>
 
-          <button class="cart__button button button--primery" type="submit">Оформить заказ</button>
+          <button
+            class="cart__button button button--primery"
+            type="submit"
+          >Оформить заказ</button>
         </div>
       </form>
     </section>
@@ -74,11 +77,11 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import AppBreadcrumbs from '@/components/UI/AppBreadcrumbs.vue';
-import AppBtnControl from '@/components/AppBtnControl.vue';
+import AmountSelection from '@/components/AmountSelection.vue';
 import numberFormat from '../helpers/numberFormat';
 
 export default {
-  components: { AppBreadcrumbs, AppBtnControl },
+  components: { AppBreadcrumbs, AmountSelection },
   setup() {
     const $store = useStore();
     const dataBreadcrumbs = [
@@ -127,17 +130,22 @@ export default {
 </script>
 
 <style scoped>
-  .button-del{
+  .button-del {
     cursor: pointer;
   }
 
-  .button-del svg{
+  .button-del svg {
     transition: 1s outline ease-out;
   }
 
-  .button-del:hover svg{
-    outline: 1px solid #ccc;
+  .button-del:hover svg {
     border-radius: 50%;
-
+    outline: 1px solid #ccc;
   }
+
+  .colors__value i{
+    border: 1px solid #ccc;
+    margin-top: -3px;
+  }
+
 </style>
